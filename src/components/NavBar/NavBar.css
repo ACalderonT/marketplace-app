@@ -1,0 +1,32 @@
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+}
+
+.nav-logo {
+    font-weight: 500;
+    font-size: large;
+}
+
+.menu-options {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.active {
+    color: #4096ff;
+    font-weight: 400;
+    border-bottom: 3px solid #4096ff;
+}
+
+.inactive {
+    color: #000;
+}
+
+.active:hover {
+    color: #91caff;
+}

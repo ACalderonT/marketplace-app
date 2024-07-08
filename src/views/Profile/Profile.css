@@ -1,0 +1,32 @@
+.profileTitle {
+    display: block;
+    text-align: right;
+    font-weight: 500;
+}
+
+.profile-sidebar {
+    text-align: right;
+    border-right: .5px solid #d9d9d9;
+}
+
+.profile-sidebar a {
+    padding: 3px 15px 3px 3px;
+}
+
+.profile-sidebar div {
+    margin: 0;
+}
+
+.activeProfile {
+    color: #4096ff;
+    font-weight: 400;
+    border-right: 3px solid #4096ff;
+}
+
+.inactiveProfile {
+    color: #000;
+}
+
+.activeProfile:hover {
+    color: #91caff;
+}

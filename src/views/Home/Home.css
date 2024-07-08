@@ -1,0 +1,17 @@
+.contentStyle {
+    margin: 0;
+    height: 260px;
+    color: #fff;
+    line-height: 260px;
+    text-align: center;
+    background-color: #364d79;
+}
+
+.contentCategoryStyle {
+    margin: 0;
+    height: 200px;
+    color: #fff;
+    line-height: 200px;
+    text-align: center;
+    background-color: #364d79;
+}

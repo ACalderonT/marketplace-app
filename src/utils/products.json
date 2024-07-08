@@ -1,0 +1,53 @@
+{
+    "total": 4,
+    "products": [
+        {   
+            "id": 1,
+            "name": "Producto 1",
+            "description": "description 1",
+            "price": 100000,
+            "date": "07/07/2024",
+            "location": "Santiago, La Florida",
+            "user": "Jhon Doe",
+            "img": "https://images.pexels.com/photos/15808492/pexels-photo-15808492/free-photo-of-blanco-y-negro-arte-camara-vintage.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+            "tags": ["Tag 1", "Tag 2", "Tag 3"],
+            "favorite": true
+        },
+        {   
+            "id": 2,
+            "name": "Producto 2",
+            "description": "description 2",
+            "price": 100000,
+            "date": "07/07/2024",
+            "location": "Santiago, La Florida",
+            "user": "Jhon Doe",
+            "img": "https://images.pexels.com/photos/821653/pexels-photo-821653.jpeg",
+            "tags": [],
+            "favorite": false
+        },
+        {   
+            "id": 3,
+            "name": "Producto 3",
+            "description": "description 3",
+            "price": 100000,
+            "date": "07/07/2024",
+            "location": "Santiago, La Florida",
+            "user": "Jhon Doe",
+            "img": "https://images.pexels.com/photos/1203819/pexels-photo-1203819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+            "tags": [],
+            "favorite": true
+        },
+        {   
+            "id": 4,
+            "name": "Producto 4",
+            "description": "description 4",
+            "price": 100000,
+            "date": "07/07/2024",
+            "location": "Santiago, La Florida",
+            "user": "Jhon Doe",
+            "img": "https://images.pexels.com/photos/4678188/pexels-photo-4678188.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+            "tags": [],
+            "favorite": false
+        }
+    ]
+}

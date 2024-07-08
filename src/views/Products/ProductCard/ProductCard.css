@@ -1,0 +1,34 @@
+.responsive-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+  
+.card-image {
+  object-fit: cover;
+  height: 200px; /* Ajusta este valor según tus necesidades */
+  width: 100%;
+}
+  
+.ant-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.product-price {
+  margin-bottom: 0;
+  font-weight: 500;
+  font-size: xx-large;
+}
+
+.product-seller,
+.product-date {
+  font-size: smaller;
+}
+
+.product-name {
+  font-weight: 400;
+}

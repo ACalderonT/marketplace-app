@@ -1,0 +1,87 @@
+[
+    {
+      "id": 1,
+      "title": "Smartphone X",
+      "description": "A high-end smartphone with a sleek design and powerful features.",
+      "brand": "TechBrand",
+      "price": 99999,
+      "main_img": "https://images.pexels.com/photos/8374522/pexels-photo-8374522.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "images": [
+        "https://images.pexels.com/photos/8374522/pexels-photo-8374522.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/8374522/pexels-photo-8374522.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Laptop Pro",
+      "description": "A professional laptop designed for productivity and performance.",
+      "brand": "CompTech",
+      "price": 149999,
+      "main_img": "https://images.pexels.com/photos/1203804/pexels-photo-1203804.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "images": [
+        "https://images.pexels.com/photos/1203804/pexels-photo-1203804.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/1203804/pexels-photo-1203804.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Wireless Headphones",
+      "description": "Noise-cancelling wireless headphones with superior sound quality.",
+      "brand": "SoundGear",
+      "price": 29999,
+      "main_img": "https://images.pexels.com/photos/1203816/pexels-photo-1203816.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "images": [
+        "https://images.pexels.com/photos/1203816/pexels-photo-1203816.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/1203816/pexels-photo-1203816.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Smartwatch Series 5",
+      "description": "A smartwatch with health tracking and customizable watch faces.",
+      "brand": "Wearables Inc.",
+      "price": 39999,
+      "main_img": "https://images.pexels.com/photos/821651/pexels-photo-821651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "images": [
+        "https://images.pexels.com/photos/821651/pexels-photo-821651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/821651/pexels-photo-821651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Gaming Console",
+      "description": "Next-generation gaming console with ultra-realistic graphics.",
+      "brand": "GameWorld",
+      "price": 49999,
+      "main_img": "https://images.pexels.com/photos/16345793/pexels-photo-16345793/free-photo-of-camara-fotografia-tecnologia-lente.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "images": [
+        "https://images.pexels.com/photos/16345793/pexels-photo-16345793/free-photo-of-camara-fotografia-tecnologia-lente.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/16345793/pexels-photo-16345793/free-photo-of-camara-fotografia-tecnologia-lente.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "4K TV",
+      "description": "A large 4K Ultra HD TV with stunning picture quality.",
+      "brand": "ViewTech",
+      "price": 79999,
+      "main_img": "https://images.pexels.com/photos/16045136/pexels-photo-16045136/free-photo-of-plastico-electronica-fondo-negro-luces-de-neon.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "images": [
+        "https://images.pexels.com/photos/16045136/pexels-photo-16045136/free-photo-of-plastico-electronica-fondo-negro-luces-de-neon.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/16045136/pexels-photo-16045136/free-photo-of-plastico-electronica-fondo-negro-luces-de-neon.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Bluetooth Speaker",
+      "description": "Portable Bluetooth speaker with deep bass and long battery life.",
+      "brand": "AudioPlus",
+      "price": 14999,
+      "main_img": "https://images.pexels.com/photos/4161786/pexels-photo-4161786.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "images": [
+        "https://images.pexels.com/photos/4161786/pexels-photo-4161786.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/4161786/pexels-photo-4161786.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      ]
+    }
+  ]
+  
