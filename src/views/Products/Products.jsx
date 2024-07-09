@@ -2,13 +2,14 @@ import { Col, Pagination, Row, Space } from 'antd';
 import ProductCard from './ProductCard/ProductCard';
 import mockData from '../../utils/products.json'
 import Filters from './Filters/Filters';
-import './Products.css'
 import OrderBy from './OrderBy/OrderBy';
+import './Products.css'
 
 
 
 const Products = () => {
     const { total, products } = mockData;
+
     return(
         <>
             <div className='main-section product-section'>
