@@ -1,9 +1,37 @@
-import { Button, Col, Flex, Form, Input, Row } from 'antd';
+import { Button, Col, Flex, Form, Input, Row, Alert } from 'antd';
 import { useNavigate } from "react-router-dom";
+import { createUser } from '../../services/users';
+import { useContext, useState } from 'react';
+import { UserContext } from '../../context/UserProvider';
 import './Register.css'
 
 const Register = () => {
     const navigate = useNavigate();
+    const { setUser } = useContext(UserContext);
+    const [showAlert, setShowAlert] = useState(false);
+
+    const handleSubmit = (values) => {
+        createUser(values)
+        .then((result) => {
+
+            if(result.success){
+                const { name, lastname, email, phone } = result.data
+                setUser({
+                    name,
+                    lastname,
+                    email,
+                    phone,
+                    active: true
+                })
+
+                navigate("/profile/account")
+            }else{
+                setShowAlert(true)
+            }
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
 
     return(
         <>
@@ -15,7 +43,7 @@ const Register = () => {
                             name='newAcount'
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
-                            onFinish={() => { console.log("On Finish"); navigate("/profile")}}
+                            onFinish={handleSubmit}
                             onFinishFailed={() => console.log("On Finish Filed")}
                         >
                             <Row gutter={8}>
@@ -82,7 +110,7 @@ const Register = () => {
                                       },
                                 ]}
                             >
-                                <Input />
+                                <Input maxLength={12}/>
                             </Form.Item>
 
                             <Form.Item 
@@ -123,8 +151,9 @@ const Register = () => {
                             </Form.Item>
 
                             <Form.Item>
-                                <Button type='primary' block>Create</Button>
+                                <Button type='primary' block htmlType='submit'>Create</Button>
                             </Form.Item>
+                            { showAlert && <Alert type='error' message='Something went wrong' closable /> }
                         </Form>
                     </Flex>
                 </Row>

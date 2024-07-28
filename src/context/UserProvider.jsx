@@ -1,33 +1,40 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import PropTypes from 'prop-types';
 
-const userContext = createContext();
-const handleToggleLoginContext = createContext();
+export const UserContext = createContext();
 
-export const useUserContext = () => {
-    return useContext(userContext);
-}
-
-export const useHandleToggleLogin = () => {
-    return useContext(handleToggleLoginContext)
-}
-
-export const UserProvider = ({ children }) => {
-    const [user, setUser] = useState(false);
-
-    const handleLogin = () => { 
-        setUser(!user);
+const UserProvider = ({ children }) => {
+    const initialUserState = {
+        name: null,
+        lastname: null,
+        email: null,
+        phone: null,
+        active: false
     }
+    
+    const [user, setUser] = useState(initialUserState)
+
+    const logOut = () => {
+        setUser(initialUserState)
+    }
+    const isAuthenticated = user.active
 
     return (
-        <userContext.Provider value={user} >
-            <handleToggleLoginContext.Provider value={handleLogin} >
-                { children }
-            </handleToggleLoginContext.Provider>
-        </userContext.Provider>
-    )
-}
+        <UserContext.Provider 
+            value={{ 
+                user, 
+                isAuthenticated, 
+                setUser,
+                logOut
+            }}
+        >
+            {children}
+        </UserContext.Provider>
+    );
+};
 
 UserProvider.propTypes = {
     children: PropTypes.node
 }
+
+export default UserProvider;

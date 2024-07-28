@@ -11,16 +11,18 @@ import Posts from './views/Profile/Posts/Posts';
 import NewPost from './views/Profile/Posts/NewPost';
 import Favorites from './views/Profile/Favorites/Favorites';
 import Chart from './views/Cart/Cart';
-import { useUserContext } from './context/UserProvider';
 import AppLayout from './views/AppLayout/AppLayout';
+import { useContext } from 'react';
+import { UserContext } from './context/UserProvider';
 import './App.css'
 
 
 
 
-function App() {
 
-  const isAuthenticated = useUserContext();
+function App() {
+  const { isAuthenticated } = useContext(UserContext);
+  console.log("isAuthenticated: ", isAuthenticated);
 
   return (
     <>

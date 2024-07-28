@@ -1,16 +1,23 @@
 import { Button, Col, Divider, Flex, Row } from "antd";
 import { NavLink, Outlet } from "react-router-dom";
 import { LogoutOutlined } from "@ant-design/icons";
-import { useHandleToggleLogin } from "../../context/UserProvider";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserProvider";
 import './Profile.css'
+
 
 
 const Profile = () => {
     const setActiveClass = ({ isActive }) => (isActive ? "activeProfile" : "inactiveProfile");
+    const { logOut } = useContext(UserContext)
     const navigate = useNavigate();
-    const handleLogin = useHandleToggleLogin();
     
+    const handleLogOut = () => {
+        logOut();
+        navigate("/");
+    }
+
     return(
         <>
             <div className='main-section'>
@@ -22,7 +29,7 @@ const Profile = () => {
                             <NavLink className={setActiveClass} to="new_post">Create post</NavLink>
                             <NavLink className={setActiveClass} to="favorites">Favorites</NavLink>
                             <Divider />
-                            <Button type="link" danger icon={<LogoutOutlined />} onClick={() => { navigate("/"); handleLogin() } } size="small" >
+                            <Button type="link" danger icon={<LogoutOutlined />} onClick={handleLogOut} size="small" >
                                 Sing Out
                             </Button>
                         </Flex>

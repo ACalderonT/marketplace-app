@@ -1,9 +1,10 @@
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartProvider';
 import { Button, Col, Divider, Empty, Flex, Image, Input, Row, Space } from 'antd';
-import './Cart.css'
 import { formatCurrency } from '../../utils/helpers';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
+import './Cart.css'
+
 
 const Chart = () => {
     const { quantity, totalPrice, setTotalPrice, setQuantity, cartProducts, setCartProducts } = useContext(CartContext);

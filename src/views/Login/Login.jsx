@@ -1,16 +1,13 @@
 import { Input, Row, Form, Button, Col, Flex } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useHandleToggleLogin } from "../../context/UserProvider";
 import './Login.css'
 
 
 const Login = () => {
     const navigate = useNavigate();
-    const handleLogin = useHandleToggleLogin();
 
     const onFinish = (values) => {
         console.log(values);
-        handleLogin()
         navigate('/profile');
         // Add service to connect with backend
     };
