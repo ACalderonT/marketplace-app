@@ -1,9 +1,11 @@
 import { AntDesignOutlined } from "@ant-design/icons";
 import { Avatar, Button, Col, Flex, Form, Input, Row, Space } from "antd";
 import { useState } from "react";
+import { useUser } from "../../../context/UserProvider";
 
 const Account = () => {
     const [editMode, setEditMode] = useState(false);
+    const currentUser = useUser();
     const [form] = Form.useForm();
 
     const handleEditMode = () => {
@@ -41,14 +43,14 @@ const Account = () => {
                                 }
                             ]}
                         >
-                            <Input disabled={!editMode} />
+                            <Input disabled={!editMode} defaultValue={currentUser.name} />
                         </Form.Item>
 
                         <Form.Item
                             label="Lastname"
                             name="lastname"
                         >
-                            <Input disabled={!editMode} />
+                            <Input disabled={!editMode} defaultValue={currentUser.lastname}/>
                         </Form.Item>
 
                         <Form.Item
@@ -65,7 +67,7 @@ const Account = () => {
                                 }
                             ]}
                         >
-                            <Input disabled={!editMode} />
+                            <Input disabled={!editMode} defaultValue={currentUser.email} />
                         </Form.Item>
 
                         <Form.Item
@@ -86,7 +88,7 @@ const Account = () => {
                                   },
                             ]}
                         >
-                            <Input disabled={!editMode} />
+                            <Input disabled={!editMode} defaultValue={currentUser.phone} />
                         </Form.Item>
 
                         { 

@@ -1,32 +1,23 @@
-import { Button, Col, Flex, Form, Input, Row, Alert } from 'antd';
+import { Button, Col, Flex, Form, Input, Row } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { createUser } from '../../services/users';
-import { useContext, useState } from 'react';
-import { UserContext } from '../../context/UserProvider';
+import { useMessage } from '../../context/MessageContext';
 import './Register.css'
 
 const Register = () => {
+    const message = useMessage();
     const navigate = useNavigate();
-    const { setUser } = useContext(UserContext);
-    const [showAlert, setShowAlert] = useState(false);
+    
 
     const handleSubmit = (values) => {
         createUser(values)
         .then((result) => {
 
             if(result.success){
-                const { name, lastname, email, phone } = result.data
-                setUser({
-                    name,
-                    lastname,
-                    email,
-                    phone,
-                    active: true
-                })
-
-                navigate("/profile/account")
+                message.success('user created successfully!!');
+                navigate("/login")
             }else{
-                setShowAlert(true)
+                message.error('somthing went wrong')
             }
         }).catch((error) => {
             console.log(error)
@@ -153,7 +144,6 @@ const Register = () => {
                             <Form.Item>
                                 <Button type='primary' block htmlType='submit'>Create</Button>
                             </Form.Item>
-                            { showAlert && <Alert type='error' message='Something went wrong' closable /> }
                         </Form>
                     </Flex>
                 </Row>

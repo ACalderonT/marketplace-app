@@ -1,9 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import PropTypes from 'prop-types';
 
-export const UserContext = createContext();
+const UserContext = createContext(null);
 
-const UserProvider = ({ children }) => {
+export const UserProvider = ({ children }) => {
     const initialUserState = {
         name: null,
         lastname: null,
@@ -33,8 +33,8 @@ const UserProvider = ({ children }) => {
     );
 };
 
+export const useUser = () => useContext(UserContext);
+
 UserProvider.propTypes = {
     children: PropTypes.node
 }
-
-export default UserProvider;

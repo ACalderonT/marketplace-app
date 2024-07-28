@@ -12,8 +12,7 @@ import NewPost from './views/Profile/Posts/NewPost';
 import Favorites from './views/Profile/Favorites/Favorites';
 import Chart from './views/Cart/Cart';
 import AppLayout from './views/AppLayout/AppLayout';
-import { useContext } from 'react';
-import { UserContext } from './context/UserProvider';
+import { useUser } from './context/UserProvider';
 import './App.css'
 
 
@@ -21,8 +20,7 @@ import './App.css'
 
 
 function App() {
-  const { isAuthenticated } = useContext(UserContext);
-  console.log("isAuthenticated: ", isAuthenticated);
+  const currentUser = useUser();
 
   return (
     <>
@@ -33,7 +31,7 @@ function App() {
           <Route path='about' element={<NotFound />}/>
           <Route path='register' element={<Register />}/>
           <Route path='logIn' element={<Login />}/>
-          <Route element={<ProtectedRoutes isAuthenticated={isAuthenticated} />}>
+          <Route element={<ProtectedRoutes isAuthenticated={currentUser.isAuthenticated} />}>
             <Route path='profile' element={<Dashboard />} >
               <Route index element={<Navigate to="account" replace />} />
               <Route path='account' element={<Account />} />

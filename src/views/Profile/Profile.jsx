@@ -2,19 +2,18 @@ import { Button, Col, Divider, Flex, Row } from "antd";
 import { NavLink, Outlet } from "react-router-dom";
 import { LogoutOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "../../context/UserProvider";
+import { useUser } from "../../context/UserProvider";
 import './Profile.css'
 
 
 
 const Profile = () => {
     const setActiveClass = ({ isActive }) => (isActive ? "activeProfile" : "inactiveProfile");
-    const { logOut } = useContext(UserContext)
+    const currentUser = useUser();
     const navigate = useNavigate();
     
     const handleLogOut = () => {
-        logOut();
+        currentUser.logOut();
         navigate("/");
     }
 

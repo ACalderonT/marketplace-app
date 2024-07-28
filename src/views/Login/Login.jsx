@@ -1,15 +1,36 @@
 import { Input, Row, Form, Button, Col, Flex } from "antd";
 import { useNavigate } from "react-router-dom";
+import { userLogIn } from "../../services/users";
+import { useUser } from "../../context/UserProvider";
 import './Login.css'
 
 
+
+
 const Login = () => {
+    const currentUser = useUser()
     const navigate = useNavigate();
 
     const onFinish = (values) => {
-        console.log(values);
-        navigate('/profile');
-        // Add service to connect with backend
+        userLogIn(values)
+        .then((result) => {
+
+            if(result.success){
+                const { id, name, lastname, email, phone, active } = result.data
+                currentUser.setUser({
+                    id,
+                    name,
+                    lastname,
+                    email,
+                    phone,
+                    active
+                })
+                navigate("/profile/account")
+            }
+        })
+        .catch((error) => {
+            console.log(error)
+        })
     };
 
     return(
