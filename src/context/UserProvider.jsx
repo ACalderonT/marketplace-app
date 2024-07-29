@@ -12,19 +12,23 @@ export const UserProvider = ({ children }) => {
         active: false
     }
     
-    const [user, setUser] = useState(initialUserState)
+    const [user, setUser] = useState(initialUserState);
+    const [token, setToken] = useState(null);
 
     const logOut = () => {
         setUser(initialUserState)
     }
+
     const isAuthenticated = user.active
 
     return (
         <UserContext.Provider 
             value={{ 
-                user, 
-                isAuthenticated, 
+                user,
                 setUser,
+                isAuthenticated,
+                token,
+                setToken,
                 logOut
             }}
         >

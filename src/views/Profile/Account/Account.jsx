@@ -1,12 +1,15 @@
 import { AntDesignOutlined } from "@ant-design/icons";
 import { Avatar, Button, Col, Flex, Form, Input, Row, Space } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "../../../context/UserProvider";
+import { getUser } from "../../../services/users";
+import { useNavigate } from "react-router-dom";
 
 const Account = () => {
     const [editMode, setEditMode] = useState(false);
     const currentUser = useUser();
     const [form] = Form.useForm();
+    const navigate = useNavigate()
 
     const handleEditMode = () => {
         setEditMode(!editMode);
@@ -20,6 +23,20 @@ const Account = () => {
     const onFinish = (values) => {
         console.log(values);
     };
+
+    useEffect(() => {
+        getUser(currentUser.token)
+        .then((result) => {
+            
+            if(!result.data['success']){
+                navigate("/");
+                currentUser.logOut()
+            }
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    })
 
     return(
         <>
@@ -43,14 +60,14 @@ const Account = () => {
                                 }
                             ]}
                         >
-                            <Input disabled={!editMode} defaultValue={currentUser.name} />
+                            <Input disabled={!editMode} defaultValue={currentUser.user['name']} />
                         </Form.Item>
 
                         <Form.Item
                             label="Lastname"
                             name="lastname"
                         >
-                            <Input disabled={!editMode} defaultValue={currentUser.lastname}/>
+                            <Input disabled={!editMode} defaultValue={currentUser.user['lastname']}/>
                         </Form.Item>
 
                         <Form.Item
@@ -67,7 +84,7 @@ const Account = () => {
                                 }
                             ]}
                         >
-                            <Input disabled={!editMode} defaultValue={currentUser.email} />
+                            <Input disabled={!editMode} defaultValue={currentUser.user['email']} />
                         </Form.Item>
 
                         <Form.Item
@@ -88,7 +105,7 @@ const Account = () => {
                                   },
                             ]}
                         >
-                            <Input disabled={!editMode} defaultValue={currentUser.phone} />
+                            <Input disabled={!editMode} defaultValue={currentUser.user['phone']} />
                         </Form.Item>
 
                         { 

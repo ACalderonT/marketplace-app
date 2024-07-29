@@ -2,13 +2,13 @@ import { Input, Row, Form, Button, Col, Flex } from "antd";
 import { useNavigate } from "react-router-dom";
 import { userLogIn } from "../../services/users";
 import { useUser } from "../../context/UserProvider";
+import { useMessage } from "../../context/MessageContext";
+import { jwtDecode } from "jwt-decode";
 import './Login.css'
 
-
-
-
 const Login = () => {
-    const currentUser = useUser()
+    const currentUser = useUser();
+    const message = useMessage();
     const navigate = useNavigate();
 
     const onFinish = (values) => {
@@ -16,7 +16,10 @@ const Login = () => {
         .then((result) => {
 
             if(result.success){
-                const { id, name, lastname, email, phone, active } = result.data
+                const decodedUser = jwtDecode(result.token)
+                const { id, name, lastname, email, phone, active } = decodedUser
+
+                currentUser.setToken(result.token)
                 currentUser.setUser({
                     id,
                     name,
@@ -25,7 +28,11 @@ const Login = () => {
                     phone,
                     active
                 })
+
+                message.success('Loged In Successfully!');
                 navigate("/profile/account")
+            }else{
+                message.error('Wrong credentials!');
             }
         })
         .catch((error) => {
@@ -45,12 +52,18 @@ const Login = () => {
                         <h1>Welcome to MarketPlace</h1>
 
                         <Form.Item 
-                            label="Username"
-                            name="username"
-                            rules={[{
-                                required: true,
-                                message: 'Please inputyour username!.'
-                            }]}
+                            label="Email"
+                            name="email"
+                            rules={[
+                                {
+                                    type: "email",
+                                    message: "The input is not a valid email!"
+                                },
+                                {
+                                    required: true,
+                                    message: 'Please input your email!.'
+                                }
+                            ]}
                         >
                             <Input />
                         </Form.Item>
