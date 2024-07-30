@@ -1,6 +1,6 @@
 import { Input, Row, Form, Button, Col, Flex } from "antd";
 import { useNavigate } from "react-router-dom";
-import { userLogIn } from "../../services/users";
+import { userLogIn } from "../../services/profile";
 import { useUser } from "../../context/UserProvider";
 import { useMessage } from "../../context/MessageContext";
 import { jwtDecode } from "jwt-decode";

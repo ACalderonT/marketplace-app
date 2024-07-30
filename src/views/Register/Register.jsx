@@ -1,6 +1,6 @@
 import { Button, Col, Flex, Form, Input, Row } from 'antd';
 import { useNavigate } from "react-router-dom";
-import { createUser } from '../../services/users';
+import { createUser } from '../../services/profile';
 import { useMessage } from '../../context/MessageContext';
 import './Register.css'
 

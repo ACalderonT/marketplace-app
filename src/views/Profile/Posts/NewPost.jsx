@@ -1,35 +1,26 @@
-import { Button, Col, Flex, Form, Input, InputNumber, Row, Select, Upload } from "antd";
+import { Button, Col, Flex, Form, Image, Input, InputNumber, Row, Select } from "antd";
 import tagOptions from '../../../utils/tagOptions.json'
 import { useState } from "react";
 import FileImage from "./Modal/FileImage";
+import { PlusOutlined } from "@ant-design/icons";
 
 const NewPost = () => {
-    const [fileList, setFileList] = useState([]);
+    const [form] = Form.useForm();
     const [showModal, setShowModal] = useState(false);
+    const [imageList, setImageList] = useState([]);
 
-      const handleRemoveImage = (file) => {
-        setFileList(fileList.filter(item => item.uid !== file.uid));
-      };
-
-      const uploadProps = {
-        fileList,
-        listType: 'picture-card',
-        onRemove: handleRemoveImage,
-        beforeUpload: () => false,
-        openFileDialogOnClick: false,
-        customRequest: ({ onSuccess }) => {
-          onSuccess("ok");
-        },
-      };
+    console.log("imageList: ", imageList);
     
     const onSubmit = (values) => {
+        form.getFieldValue('images')
         console.log(values);
     };
 
     return (
         <>
-            <FileImage showModal={showModal} setShowModal={setShowModal} fileList={fileList} setFileList={setFileList} />
+            <FileImage showModal={showModal} setShowModal={setShowModal} setImageList={setImageList} form={form}  />
             <Form
+                form={form}
                 layout="vertical"
                 name="new-post"
                 onFinish={onSubmit}
@@ -39,7 +30,7 @@ const NewPost = () => {
                     <Col xs={24} sm={24} md={12}>
                         <Form.Item
                             label="Product Name"
-                            name="product-name"
+                            name="productName"
                             rules={[{
                                 required: true,
                                 message: 'Please input the product name.'
@@ -82,12 +73,31 @@ const NewPost = () => {
                             <InputNumber min={0} controls={false} style={{ width: '100%' }}/>
                         </Form.Item>
                         <Form.Item
+                            label="Location"
+                            name="location"
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
                             label="Images"
                             name="images"
                         >
-                            <Upload {...uploadProps} >
-                                { fileList.length < 5 && <Button type="text" onClick={() => setShowModal(true)}>+ Upload</Button> }
-                            </Upload>
+                            <Row gutter={[10, 25]}>
+                                <Col span={24}>
+                                    <Button onClick={() => setShowModal(true)} type="dashed" block icon={<PlusOutlined />} size="large" >
+                                        Upload
+                                    </Button>
+                                </Col>
+                                {
+                                    imageList.map((image, index) => (
+                                        <Col key={(index)} xs={12} sm={8} md={6}>
+                                            <div style={{ borderRadius: '10px', overflow: 'hidden'}}>
+                                                <Image src={image.url} preview={false} height={100}/>
+                                            </div>
+                                        </Col>
+                                    ))
+                                }
+                            </Row>
                         </Form.Item>
                     </Col>
                 </Row>

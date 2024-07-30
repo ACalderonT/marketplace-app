@@ -2,7 +2,7 @@ import { AntDesignOutlined } from "@ant-design/icons";
 import { Avatar, Button, Col, Flex, Form, Input, Row, Space } from "antd";
 import { useEffect, useState } from "react";
 import { useUser } from "../../../context/UserProvider";
-import { getUser } from "../../../services/users";
+import { getUser } from "../../../services/profile";
 import { useNavigate } from "react-router-dom";
 
 const Account = () => {
@@ -47,6 +47,13 @@ const Account = () => {
                 onReset={onReset}
                 onFinish={onFinish}
                 scrollToFirstError
+                initialValues={{
+                    name: currentUser.user['name'],
+                    lastname: currentUser.user['lastname'],
+                    email: currentUser.user['email'],
+                    phone: currentUser.user['phone']
+
+                }}
             >
                 <Row>
                     <Col xs={24} sm={24} md={12}>
@@ -60,14 +67,14 @@ const Account = () => {
                                 }
                             ]}
                         >
-                            <Input disabled={!editMode} defaultValue={currentUser.user['name']} />
+                            <Input disabled={!editMode} />
                         </Form.Item>
 
                         <Form.Item
                             label="Lastname"
                             name="lastname"
                         >
-                            <Input disabled={!editMode} defaultValue={currentUser.user['lastname']}/>
+                            <Input disabled={!editMode} />
                         </Form.Item>
 
                         <Form.Item
@@ -84,7 +91,7 @@ const Account = () => {
                                 }
                             ]}
                         >
-                            <Input disabled={!editMode} defaultValue={currentUser.user['email']} />
+                            <Input disabled={!editMode} />
                         </Form.Item>
 
                         <Form.Item
@@ -105,7 +112,7 @@ const Account = () => {
                                   },
                             ]}
                         >
-                            <Input disabled={!editMode} defaultValue={currentUser.user['phone']} />
+                            <Input disabled={!editMode} />
                         </Form.Item>
 
                         { 
