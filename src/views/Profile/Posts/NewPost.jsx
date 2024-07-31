@@ -3,17 +3,39 @@ import tagOptions from '../../../utils/tagOptions.json'
 import { useState } from "react";
 import FileImage from "./Modal/FileImage";
 import { PlusOutlined } from "@ant-design/icons";
+import { createNewPost } from "../../../services/profile";
+import { useMessage } from "../../../context/MessageContext";
+import { useUser } from "../../../context/UserProvider";
 
 const NewPost = () => {
     const [form] = Form.useForm();
     const [showModal, setShowModal] = useState(false);
     const [imageList, setImageList] = useState([]);
-
-    console.log("imageList: ", imageList);
+    const { user, token: authToken } = useUser();
+    const message = useMessage();
     
+    const formatImages = (imageArray) => {
+        return '{' + imageArray.map((image) => `"${image.url}"`).join(',') + '}'
+    }
+
     const onSubmit = (values) => {
-        form.getFieldValue('images')
-        console.log(values);
+        const payload = values;
+        payload.images = formatImages(payload.images)
+        payload['creatorId'] = user.id;
+
+        createNewPost(authToken, payload)
+        .then((result) => {
+            console.log("result: ", result)
+            if(result.success){
+                message.success('Post created successfully!');
+                form.resetFields();
+                setImageList([])
+            }else{
+                message.error('somthing went wrong')
+            }
+        }).catch((error) => {
+            console.log(error)
+        })
     };
 
     return (
@@ -88,12 +110,10 @@ const NewPost = () => {
                                         Upload
                                     </Button>
                                 </Col>
-                                {
+                                {   imageList.length > 0 &&
                                     imageList.map((image, index) => (
-                                        <Col key={(index)} xs={12} sm={8} md={6}>
-                                            <div style={{ borderRadius: '10px', overflow: 'hidden'}}>
-                                                <Image src={image.url} preview={false} height={100}/>
-                                            </div>
+                                        <Col key={(index)} xs={12} sm={12} md={8}>
+                                            <Image src={image.url} preview={false} height={100} style={{ borderRadius: '10px' }}/>
                                         </Col>
                                     ))
                                 }
@@ -103,9 +123,12 @@ const NewPost = () => {
                 </Row>
                 <Row justify='center'>
                     <Flex>
-                    <Col span={24}>
+                        <Col span={12}>
+                            <Button type="primary" htmlType="reset" ghost>Reset</Button>
+                        </Col>
+                        <Col span={12}>
                             <Button type="primary" htmlType="submit">Create Post</Button>
-                    </Col>
+                        </Col>
                     </Flex>
                 </Row>
             </Form>

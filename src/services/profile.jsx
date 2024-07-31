@@ -77,16 +77,18 @@ export const getFavoriteUserPosts = async (authToken) => {
 
 export const createNewPost = async (authToken, payload) => {
     try{
-        const url = ``
+        const url = `http://localhost:3000/profile/posts`
 
-        const response = await axios.post(url, {
-            headers: {
-                Authorization: `Bearer ${authToken}`
-            },
-            payload
-        })
+        const response = await axios.post(url, 
+            {
+                payload
+            }, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`
+                }
+            })
 
-        return response
+        return response.data
     }catch(error){
         console.error(error);
         return error
@@ -99,7 +101,7 @@ export const updateUserInformation = async (authToken, payload) => {
 
         const response = await axios.put(url, {
             headers: {
-                Authorization: authToken
+                Authorization: `Bearer ${authToken}`
             },
             payload
         })

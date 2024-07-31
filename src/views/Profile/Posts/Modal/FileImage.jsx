@@ -6,13 +6,16 @@ const FileImage = ({ showModal, setShowModal, setImageList, form }) => {
 
     const handleCancel = () => {
         setShowModal(false)
-        setImageList(form.getFieldValue(['images']))
+        const urlImages = form.getFieldValue(['images'])
+        if(urlImages){
+            setImageList(urlImages)
+        }
     }
     
     return (
         <>
             <Modal
-                title="Add an image's url"
+                title="Add the url of your images"
                 open={showModal}
                 onCancel={handleCancel}
                 footer={null}
@@ -84,5 +87,5 @@ FileImage.propTypes = {
     showModal: PropTypes.bool,
     setShowModal: PropTypes.func, 
     setImageList: PropTypes.func,
-    form: PropTypes.func
+    form: PropTypes.object
 }
