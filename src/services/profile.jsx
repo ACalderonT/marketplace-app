@@ -41,17 +41,20 @@ export const getUser = async (authToken) => {
     }
 };
 
-export const getUserPosts = async (authToken) => {
+export const getUserPosts = async (creatorId, authToken) => {
     try{
-        const url = ``;
-        
+        const url = `http://localhost:3000/profile/posts`;
+
         const response = await axios.get(url, {
+            params: {
+                creator_id: creatorId
+            },
             headers: {
                 Authorization: `Bearer ${authToken}`
             }
         })
-
-        return response
+    
+        return response.data
     }catch(error){
         console.error(error);
         return error
@@ -94,6 +97,23 @@ export const createNewPost = async (authToken, payload) => {
         return error
     }
 };
+
+export const removePost = async (authToken, product_id) => {
+    try{
+        const url = `http://localhost:3000/profile/posts/${product_id}`
+
+        const response = await axios.delete(url, {
+            headers: {
+                Authorization: `Bearer ${authToken}`
+            }
+        })
+
+        return response.data
+    }catch(error){
+        console.error(error);
+        return error
+    }
+}
 
 export const updateUserInformation = async (authToken, payload) => {
     try{
