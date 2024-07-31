@@ -25,7 +25,6 @@ const NewPost = () => {
 
         createNewPost(authToken, payload)
         .then((result) => {
-            console.log("result: ", result)
             if(result.success){
                 message.success('Post created successfully!');
                 form.resetFields();

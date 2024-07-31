@@ -61,17 +61,20 @@ export const getUserPosts = async (creatorId, authToken) => {
     }
 };
 
-export const getFavoriteUserPosts = async (authToken) => {
+export const getFavoriteUserPosts = async (userId, authToken) => {
     try{
-        const url = ``;
+        const url = `http://localhost:3000/profile/favorites`;
 
         const response = await axios.get(url, {
+            params: {
+                user_id: userId
+            },
             headers: {
                 Authorization: `Bearer ${authToken}`
             }
         })
 
-        return response
+        return response.data
     }catch(error){
         console.error(error);
         return error;

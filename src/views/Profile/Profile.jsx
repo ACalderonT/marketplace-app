@@ -24,9 +24,9 @@ const Profile = () => {
                     <Col className="gutter-row" span={4}>
                         <Flex vertical gap={'small'} className="profile-sidebar">
                             <NavLink className={setActiveClass} to="account">My account</NavLink>
+                            <NavLink className={setActiveClass} to="favorites">Favorites</NavLink>
                             <NavLink className={setActiveClass} to="posts">My posts</NavLink>
                             <NavLink className={setActiveClass} to="new_post">Create post</NavLink>
-                            <NavLink className={setActiveClass} to="favorites">Favorites</NavLink>
                             <Divider />
                             <Button type="link" danger icon={<LogoutOutlined />} onClick={handleLogOut} size="small" >
                                 Sing Out
