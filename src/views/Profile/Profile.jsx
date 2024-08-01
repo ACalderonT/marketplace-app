@@ -1,4 +1,4 @@
-import { Button, Col, Divider, Flex, Row } from "antd";
+import { Button, Col, Row } from "antd";
 import { NavLink, Outlet } from "react-router-dom";
 import { LogoutOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
@@ -21,19 +21,18 @@ const Profile = () => {
         <>
             <div className='main-section'>
                 <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32}}>
-                    <Col className="gutter-row" span={4}>
-                        <Flex vertical gap={'small'} className="profile-sidebar">
+                    <Col xs={24} md={5}>
+                        <div className="profile-sidebar">
                             <NavLink className={setActiveClass} to="account">My account</NavLink>
                             <NavLink className={setActiveClass} to="favorites">Favorites</NavLink>
                             <NavLink className={setActiveClass} to="posts">My posts</NavLink>
                             <NavLink className={setActiveClass} to="new_post">Create post</NavLink>
-                            <Divider />
-                            <Button type="link" danger icon={<LogoutOutlined />} onClick={handleLogOut} size="small" >
-                                Sing Out
-                            </Button>
-                        </Flex>
+                        </div>
+                        <Button type="link" size="small" danger block onClick={handleLogOut} icon={<LogoutOutlined />}>
+                            Sing Out
+                        </Button>
                     </Col>
-                    <Col className="gutter-row" span={20}>
+                    <Col className="gutter-row" xs={24} md={19}>
                         <Outlet />
                     </Col>
                 </Row>

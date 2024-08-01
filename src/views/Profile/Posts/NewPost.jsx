@@ -1,4 +1,4 @@
-import { Button, Col, Flex, Form, Image, Input, InputNumber, Row, Select } from "antd";
+import { Button, Col, Flex, Form, Input, InputNumber, Row, Select } from "antd";
 import tagOptions from '../../../utils/tagOptions.json'
 import { useState } from "react";
 import FileImage from "./Modal/FileImage";
@@ -6,6 +6,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import { createNewPost } from "../../../services/profile";
 import { useMessage } from "../../../context/MessageContext";
 import { useUser } from "../../../context/UserProvider";
+import './Posts.css'
 
 const NewPost = () => {
     const [form] = Form.useForm();
@@ -111,8 +112,10 @@ const NewPost = () => {
                                 </Col>
                                 {   imageList.length > 0 &&
                                     imageList.map((image, index) => (
-                                        <Col key={(index)} xs={12} sm={12} md={8}>
-                                            <Image src={image.url} preview={false} height={100} style={{ borderRadius: '10px' }}/>
+                                        <Col key={(index)} xs={24} sm={12} md={8}>
+                                            <div className="img-container">
+                                                <img src={image.url} className="post-img" />
+                                            </div>
                                         </Col>
                                     ))
                                 }
@@ -123,7 +126,7 @@ const NewPost = () => {
                 <Row justify='center'>
                     <Flex>
                         <Col span={12}>
-                            <Button type="primary" htmlType="reset" ghost>Reset</Button>
+                            <Button type="primary" htmlType="reset" onClick={() => setImageList([])} ghost>Reset</Button>
                         </Col>
                         <Col span={12}>
                             <Button type="primary" htmlType="submit">Create Post</Button>

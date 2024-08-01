@@ -5,8 +5,12 @@
 }
 
 .profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     text-align: right;
-    border-right: .5px solid #d9d9d9;
+    border-right: 1px solid #d9d9d9;
+    margin-bottom: 20px;
 }
 
 .profile-sidebar a {
@@ -29,4 +33,18 @@
 
 .activeProfile:hover {
     color: #91caff;
+}
+
+@media (width < 768px) {
+    .profile-sidebar{
+        flex-direction: row;
+        border-right: none;
+        border-bottom: 1px solid #d9d9d9;
+        justify-content: center;
+    }
+
+    .activeProfile {
+        border-right: none;
+        border-bottom: 3px solid #4096ff;
+    }
 }

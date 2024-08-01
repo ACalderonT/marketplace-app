@@ -6,6 +6,10 @@
     background-color: #fff;
 }
 
+.nav-btn {
+    display: none;
+}
+
 .nav-logo {
     font-weight: 500;
     font-size: large;
@@ -29,4 +33,22 @@
 
 .active:hover {
     color: #91caff;
+}
+
+@media (width < 576px) {
+    .menu-options {
+        display: none;
+        top: 0;
+        position: absolute;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        background-color: #f0f0f0;
+        z-index: 100;
+    }
+    
+    .nav-btn {
+        display: inline-flex;
+        z-index: 110;
+    }
 }

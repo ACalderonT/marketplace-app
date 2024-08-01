@@ -1,4 +1,4 @@
-import { Button, Col, Divider, Empty, Flex, Image, Row, Space, Spin } from "antd";
+import { Button, Col, Divider, Empty, Flex, Row, Space, Spin } from "antd";
 import myPosts from '../../../utils/myProducts.json'
 import { formatCurrency } from "../../../utils/helpers";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { getUserPosts, removePost } from "../../../services/profile";
 import { useUser } from "../../../context/UserProvider";
 import { useMessage } from "../../../context/MessageContext";
+import './Posts.css'
 
 const Posts = () => {
     const [userPosts, setUserPosts] = useState([]);
@@ -51,18 +52,14 @@ const Posts = () => {
                 <Spin size="large"/> : 
                 userPosts.length > 0 ?
                     userPosts.map((product) => (
-                        <Row key={product.id} gutter={16}>
+                        <Row key={product.id} gutter={16} align='middle'>
                             <Col span={4}>
-                                <Image 
-                                    alt={product.name}
-                                    src={product.main_img}
-                                />
+                                <div className="img-container">
+                                    <img alt={product.name} src={product.main_img} className="post-img" />
+                                </div>
                             </Col>
                             <Col span={16}>
-                                <Space >
-                                    <h1>[ {product.id} ] - </h1>
-                                    <h1 style={{ fontWeight: '400' }}>{product.title}</h1>
-                                </Space>
+                                <h1 style={{ fontWeight: '400' }}>{product.title}</h1>
                                 <h2 style={{ fontSize: 'xx-large' }}>$ {formatCurrency(product.price) }</h2>
                             </Col>
                             <Col span={4}>

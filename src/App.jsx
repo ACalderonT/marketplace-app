@@ -12,8 +12,10 @@ import NewPost from './views/Profile/Posts/NewPost';
 import Favorites from './views/Profile/Favorites/Favorites';
 import Chart from './views/Cart/Cart';
 import AppLayout from './views/AppLayout/AppLayout';
+import Detail from './views/Products/Detail/Detail';
 import { useUser } from './context/UserProvider';
 import './App.css'
+
 
 
 
@@ -28,6 +30,7 @@ function App() {
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Home />} />
           <Route path='products' element={<Products />}/>
+          <Route path='products/:id' element={<Detail />}/>
           <Route path='about' element={<NotFound />}/>
           <Route path='register' element={<Register />}/>
           <Route path='logIn' element={<Login />}/>

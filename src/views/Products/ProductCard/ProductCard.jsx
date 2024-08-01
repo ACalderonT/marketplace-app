@@ -1,18 +1,25 @@
 import { useContext } from 'react';
 import { CartContext } from '../../../context/CartProvider';
 import { EnvironmentOutlined, EyeOutlined, HeartFilled, HeartOutlined, ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Card, Flex, Image, Tag } from "antd";
+import { Button, Card, Flex, Tag } from "antd";
 import { formatCurrency } from "../../../utils/helpers";
 import { useState } from "react";
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import './ProductCard.css'
+
 
 
 
 const ProductCard = ({ product }) => {
     const [favorite, setFavorite] = useState(product.favorite);
+    const navigate = useNavigate();
 
     const {setTotalPrice, setQuantity, setCartProducts} = useContext(CartContext);
+
+    const goToDetail = (id) => {
+        navigate(`${id}`)
+    }
 
     const onFavoriteClick = () => {
         setFavorite(!favorite);
@@ -27,7 +34,7 @@ const ProductCard = ({ product }) => {
             if (productIndex < 0) {
                 const addedProduct = {
                     id: product.id,
-                    title: product.name,
+                    title: product.title,
                     price: product.price,
                     img: product.img,
                     qtty: 1
@@ -63,21 +70,19 @@ const ProductCard = ({ product }) => {
                 className="responsive-card"
                 size="small"
                 cover={
-                    <Image alt={product.name}
-                           src={product.img}
-                           className="card-image"
-                           preview={false}
-                    />
+                    <div className='card-img-container'>
+                        <img src={product.img} alt={product.title} className='card-img'/>
+                    </div>
                 }
                 actions={[
                     <Button key={`favorite_${product.id}`} type='text' icon={favorite ? <HeartFilled style={{ color: '#f5222d' }}/> : <HeartOutlined />} onClick={onFavoriteClick} />,
                     <Button key={`cart_${product.id}`} type='text' icon={<ShoppingCartOutlined />} onClick={() => handleBuyProduct(product)} />,
-                    <Button key={`detail_${product.id}`} type='text' icon={<EyeOutlined />} />,
+                    <Button key={`detail_${product.id}`} type='text' icon={<EyeOutlined />} onClick={() => goToDetail(product.id)} />,
                 ]}
             >
             <Flex vertical justify="space-between" >
                 <Flex wrap>
-                    { product.tags.map((tag) => (
+                    { product?.tags?.map((tag) => (
                         <Tag key={tag} bordered={false}>{tag}</Tag>
                     ))}
                 </Flex>
@@ -86,10 +91,12 @@ const ProductCard = ({ product }) => {
                     <span className="product-date">{product.date}</span>
                 </>
                 <>
-                    <h2 className="product-name">{product.name}</h2>
+                    <h2 className="product-name">{product.title}</h2>
                 </>
                 <>
-                    <span><EnvironmentOutlined style={{ fontSize: '1em' }} /> {product.location}</span>
+                    {   product.location &&
+                        <span><EnvironmentOutlined style={{ fontSize: '1em' }} /> {product.location}</span>
+                    }
                     <span className="product-seller"><UserOutlined style={{ fontSize: '1rem'}}/> {product.user}</span>
                 </>
             </Flex>
@@ -101,7 +108,7 @@ const ProductCard = ({ product }) => {
 ProductCard.propTypes = {
     product: PropTypes.shape({
         id: PropTypes.number,
-        name: PropTypes.string,
+        title: PropTypes.string,
         price: PropTypes.number,
         date: PropTypes.string,
         location: PropTypes.string,

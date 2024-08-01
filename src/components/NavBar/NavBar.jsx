@@ -1,9 +1,9 @@
-import { Badge, Divider } from "antd";
+import { Badge, Button, Divider } from "antd";
 import { Header } from "antd/es/layout/layout";
 import { NavLink } from "react-router-dom";
-import { ShoppingOutlined } from "@ant-design/icons";
+import { MenuOutlined, ShoppingOutlined } from "@ant-design/icons";
 import { useUser } from "../../context/UserProvider";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../../context/CartProvider";
 import "./NavBar.css"
 
@@ -11,12 +11,13 @@ const NavBar = () => {
     const setActiveClass = ({ isActive }) => (isActive ? "active" : "inactive");
     const currentUser = useUser();
     const { quantity } = useContext(CartContext);
+    const [showMenu, setShowMenu] = useState(true);
 
     return (
         <>
             <Header className="nav-bar">
                 <div className="nav-logo" >MarketPlace</div>
-                <div className="menu-options">
+                <div className={`menu-options ${showMenu ? 'show' : 'hidden'}`}>
                     <NavLink className={setActiveClass} to="">Home</NavLink>
                     <NavLink className={setActiveClass} to="products">Products</NavLink>
                     <NavLink className={setActiveClass} to="about">About us</NavLink>
@@ -34,6 +35,7 @@ const NavBar = () => {
                     )
                     }
                 </div>
+                <Button className="nav-btn" icon={<MenuOutlined />} onClick={() => setShowMenu(!showMenu)} />
             </Header>
         </>
     )

@@ -1,0 +1,19 @@
+.img-container {
+    border-radius: 10px;
+    overflow: hidden;
+    aspect-ratio: 3 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-img {
+    object-fit: cover;
+    width: 100%;
+}
+
+.product-price {
+    margin-bottom: 0;
+    font-weight: 500;
+    font-size: xx-large;
+}

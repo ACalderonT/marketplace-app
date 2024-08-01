@@ -14,3 +14,34 @@
   padding: 70px 24px;
   overflow: auto;
 }
+
+.image-container {
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.side-img {
+  width: 80%
+}
+
+.main-img {
+  aspect-ratio: 2 / 1;
+  width: 100%;
+}
+
+.image-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+@media (width < 768px) {
+  .side-img {
+    width: 15%
+  }
+}
