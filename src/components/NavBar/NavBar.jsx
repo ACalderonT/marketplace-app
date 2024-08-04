@@ -1,4 +1,4 @@
-import { Badge, Button, Divider } from "antd";
+import { Badge, Button, Divider, Dropdown } from "antd";
 import { Header } from "antd/es/layout/layout";
 import { NavLink } from "react-router-dom";
 import { MenuOutlined, ShoppingOutlined } from "@ant-design/icons";
@@ -12,6 +12,40 @@ const NavBar = () => {
     const currentUser = useUser();
     const { quantity } = useContext(CartContext);
     const [showMenu, setShowMenu] = useState(true);
+
+    const items = [
+        {
+            key: '1',
+            label: (<NavLink className={setActiveClass} to="">Home</NavLink>)
+        },
+        {
+            key: '2',
+            label: (<NavLink className={setActiveClass} to="products">Products</NavLink>)
+        },
+        {
+            key: '3',
+            label: (<NavLink className={setActiveClass} to="about">About us</NavLink>)
+        },
+        {
+            key: '4',
+            label: (<NavLink className={setActiveClass} to="chart"><Badge count={quantity} offset={[4, -4]} dot size="small" >Shopping cart</Badge></NavLink>)
+        },
+        {
+            type: 'divider'
+        },
+        !currentUser.isAuthenticated && {
+            key: '5',
+            label: (<NavLink className={setActiveClass} to="login">Sign in</NavLink>)
+        },
+        !currentUser.isAuthenticated && {
+            key: '6',
+            label: (<NavLink className={setActiveClass} to="register">Sign up</NavLink>)
+        },
+        currentUser.isAuthenticated && {
+            key: '7',
+            label: (<NavLink className={setActiveClass} to="profile">My Account</NavLink>)
+        },
+    ]
 
     return (
         <>
@@ -35,7 +69,9 @@ const NavBar = () => {
                     )
                     }
                 </div>
-                <Button className="nav-btn" icon={<MenuOutlined />} onClick={() => setShowMenu(!showMenu)} />
+                <Dropdown menu={{items}} className="nav-btn" placement="bottomRight" overlayStyle={{ textAlign: 'center' }} trigger='click' >
+                    <Button><MenuOutlined /></Button>
+                </Dropdown>
             </Header>
         </>
     )

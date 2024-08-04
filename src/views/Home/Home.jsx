@@ -31,11 +31,11 @@ const Home = () => {
                     </div>
             </Carousel>
 
-            <Card style={{ border: 'none', fontSize: 'x-large', cursor: 'pointer', textAlign: 'center' }}>
-                <Card.Grid className='hover-color' style={{ width: '50%' }} onClick={() => handleClick(1)}>Phones</Card.Grid>
-                <Card.Grid className='hover-color' style={{ width: '50%' }} onClick={() => handleClick(3)}>Laptops</Card.Grid>
-                <Card.Grid className='hover-color' style={{ width: '50%' }} onClick={() => handleClick(2)}>Cameras</Card.Grid>
-                <Card.Grid className='hover-color' style={{ width: '50%' }} onClick={() => handleClick(4)}>Headphones</Card.Grid>
+            <Card className='grid-card-options' style={{ textAlign: 'center'}}>
+                <Card.Grid className='grid-option' onClick={() => handleClick(1)}>Phones</Card.Grid>
+                <Card.Grid className='grid-option' onClick={() => handleClick(3)}>Laptops</Card.Grid>
+                <Card.Grid className='grid-option' onClick={() => handleClick(2)}>Cameras</Card.Grid>
+                <Card.Grid className='grid-option' onClick={() => handleClick(4)}>Headphones</Card.Grid>
             </Card>
         </>
     )

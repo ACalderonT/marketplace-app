@@ -23,6 +23,23 @@
     background-color: #364d79;
 }
 
-.hover-color:hover {
+.grid-card-options {
+    border: none;
+    cursor: pointer;
+}
+
+.grid-option {
+    font-size: x-large;
+    width: 50% !important;
+}
+
+.grid-option:hover {
     background-color: #f0f0f0;
+}
+
+@media (width < 576px) {
+    .grid-option {
+        font-size: medium;
+        width: 100% !important;
+    }
 }

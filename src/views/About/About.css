@@ -1,0 +1,58 @@
+.logo-container {
+    border: .5px solid #434343;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.logo-container h3 {
+    font-weight: 400;
+}
+
+.logo {
+    height: 6em;
+    width: 6em;
+    aspect-ratio: 1 / 1;
+}
+
+@media (width < 992px) {
+    .logo-container {
+        padding: 20px;
+    }
+
+    .logo {
+        height: 3em;
+        width: 3em;
+        aspect-ratio: 1 / 1;
+    }
+
+    .logo-container h3 {
+        font-size: small;
+    }
+}
+
+@media (width < 768px) {
+    .logo-container {
+        padding: 15px;
+    }
+
+    .logo {
+        height: 2em;
+        width: 2em;
+        aspect-ratio: 1 / 1;
+    }
+
+    .logo-container h3 {
+        font-size: x-small;
+    }
+}
+
+@media (width < 576px) {
+    .logo-container {
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    .logo-container h3 {
+        display: none;
+    }
+}

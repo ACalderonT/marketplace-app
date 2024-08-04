@@ -15,6 +15,7 @@ import AppLayout from './views/AppLayout/AppLayout';
 import Detail from './views/Products/Detail/Detail';
 import { useUser } from './context/UserProvider';
 import './App.css'
+import About from './views/About/About';
 
 
 
@@ -31,7 +32,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path='products' element={<Products />}/>
           <Route path='products/:id' element={<Detail />}/>
-          <Route path='about' element={<NotFound />}/>
+          <Route path='about' element={<About />}/>
           <Route path='register' element={<Register />}/>
           <Route path='logIn' element={<Login />}/>
           <Route element={<ProtectedRoutes isAuthenticated={currentUser.isAuthenticated} />}>
