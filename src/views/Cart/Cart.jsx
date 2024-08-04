@@ -20,7 +20,6 @@ const Chart = () => {
     }
 
     const handleAddProduct = (product) => {
-        console.log(cartProducts)
         const productIndex = cartProducts.findIndex((cartProduct) => cartProduct.id === product.id);
         cartProducts[productIndex].qtty += 1
         setQuantity(quantity + 1);

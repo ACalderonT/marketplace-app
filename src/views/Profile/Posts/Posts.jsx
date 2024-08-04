@@ -15,7 +15,6 @@ const Posts = () => {
     const message = useMessage();
 
     useEffect(() => {
-        console.log()
         getUserPosts(user.id, token)
         .then((result) => {
             result.data.map((product) => {

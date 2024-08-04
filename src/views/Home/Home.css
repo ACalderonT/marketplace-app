@@ -1,10 +1,17 @@
-.contentStyle {
+.contentStyle2 {
     margin: 0;
-    height: 260px;
-    color: #fff;
-    line-height: 260px;
-    text-align: center;
-    background-color: #364d79;
+    overflow: hidden;
+    aspect-ratio: 2 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentStyle2 img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    
 }
 
 .contentCategoryStyle {
@@ -14,4 +21,8 @@
     line-height: 200px;
     text-align: center;
     background-color: #364d79;
+}
+
+.hover-color:hover {
+    background-color: #f0f0f0;
 }

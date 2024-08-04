@@ -24,18 +24,18 @@ const FileImage = ({ showModal, setShowModal, setImageList, form }) => {
                     form={form}
                     wrapperCol={24}
                 >
-                   <Form.List
+                    <Form.List
                         name="images"
                         rules={[
                             {
-                              validator: async(_, items) => {
-                                if (!items || items.length < 1) {
-                                  return Promise.reject(new Error('Debe haber al menos un campo.'));
-                                }
-                              },
-                            },
-                          ]}
-                   >
+                                validator: async(_, items) => {
+                                    if (!items || items.length < 1) {
+                                        return Promise.reject(new Error('Debe haber al menos un campo.'));
+                                    }
+                                },
+                            }
+                        ]}
+                        >
                     {(fields, {add, remove}) => (
                         <>
                         {fields.map(({ key, name, ...resetField}) => (
@@ -74,7 +74,7 @@ const FileImage = ({ showModal, setShowModal, setImageList, form }) => {
                         }
                         </>
                     )}
-                   </Form.List>
+                    </Form.List>
                 </Form>
             </Modal>
         </>

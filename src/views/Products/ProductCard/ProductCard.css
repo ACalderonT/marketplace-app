@@ -17,11 +17,16 @@
   font-size: xx-large;
 }
 
-.product-seller,
-.product-date {
-  font-size: smaller;
+.product-seller {
+  font-size: small;
+  color: #8c8c8c;
 }
 
 .product-name {
+  margin: 0;
   font-weight: 400;
+}
+
+.no-pointer {
+  cursor: default;
 }

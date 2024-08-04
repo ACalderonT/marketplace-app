@@ -25,6 +25,12 @@
   cursor: pointer;
 }
 
+.image-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
 .side-img {
   width: 80%
 }
@@ -32,12 +38,6 @@
 .main-img {
   aspect-ratio: 2 / 1;
   width: 100%;
-}
-
-.image-container img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
 }
 
 @media (width < 768px) {

@@ -23,8 +23,6 @@ const Favorites = () => {
             console.log(error)
             setFavoritePosts(myProducts);
         })
-
-        console.log(favoritePosts);
     }, [])
 
     return(

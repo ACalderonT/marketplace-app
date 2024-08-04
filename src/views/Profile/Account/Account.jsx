@@ -16,7 +16,6 @@ const Account = () => {
     }
 
     const onReset = () => {
-        console.log("form: ", form)
         form.resetFields();
     };
 

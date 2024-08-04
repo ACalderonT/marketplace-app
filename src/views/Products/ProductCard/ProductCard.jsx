@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { CartContext } from '../../../context/CartProvider';
-import { EnvironmentOutlined, EyeOutlined, HeartFilled, HeartOutlined, ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Card, Flex, Tag } from "antd";
+import { EyeOutlined, HeartFilled, HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { Button, Card, Divider, Flex, Tag } from "antd";
 import { formatCurrency } from "../../../utils/helpers";
 import { useState } from "react";
 import PropTypes from 'prop-types';
@@ -67,7 +67,7 @@ const ProductCard = ({ product }) => {
             <Card
                 hoverable
                 bordered={false}
-                className="responsive-card"
+                className="no-pointer"
                 size="small"
                 cover={
                     <div className='card-img-container'>
@@ -80,26 +80,19 @@ const ProductCard = ({ product }) => {
                     <Button key={`detail_${product.id}`} type='text' icon={<EyeOutlined />} onClick={() => goToDetail(product.id)} />,
                 ]}
             >
-            <Flex vertical justify="space-between" >
-                <Flex wrap>
-                    { product?.tags?.map((tag) => (
-                        <Tag key={tag} bordered={false}>{tag}</Tag>
-                    ))}
+                <Flex justify='space-between'>
+                        <Tag color='blue' style={{ fontSize: 'xx-small'}}>{product.category}</Tag>
+                        <Tag color='geekblue' style={{ fontSize: 'xx-small'}}>{product.brand}</Tag>
                 </Flex>
-                <>
-                    <h1 className="product-price">$ {formatCurrency(product.price)}</h1>
-                    <span className="product-date">{product.date}</span>
-                </>
-                <>
-                    <h2 className="product-name">{product.title}</h2>
-                </>
-                <>
-                    {   product.location &&
-                        <span><EnvironmentOutlined style={{ fontSize: '1em' }} /> {product.location}</span>
-                    }
-                    <span className="product-seller"><UserOutlined style={{ fontSize: '1rem'}}/> {product.user}</span>
-                </>
-            </Flex>
+                <Divider />
+                <Flex vertical justify="space-between" >
+                    <Flex vertical gap='small'>
+                        <h2 className="product-name">{product.title}</h2>
+                        <span>{product.description}</span>
+                        <span className='product-seller'>Selled by: {product.seller}</span>
+                        <h1 className="product-price">$ {formatCurrency(product.price)}</h1>
+                    </Flex>
+                </Flex>
             </Card>
         </>
     )
@@ -111,10 +104,12 @@ ProductCard.propTypes = {
         title: PropTypes.string,
         price: PropTypes.number,
         date: PropTypes.string,
+        description: PropTypes.string,
         location: PropTypes.string,
-        user: PropTypes.string,
+        seller: PropTypes.string,
         img: PropTypes.string,
-        tags: PropTypes.array,
+        category: PropTypes.string,
+        brand: PropTypes.string,
         favorite: PropTypes.bool
     })
 }

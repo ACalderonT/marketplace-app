@@ -1,17 +1,18 @@
 import { Button, Col, Flex, Form, Input, InputNumber, Row, Select } from "antd";
-import tagOptions from '../../../utils/tagOptions.json'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FileImage from "./Modal/FileImage";
 import { PlusOutlined } from "@ant-design/icons";
 import { createNewPost } from "../../../services/profile";
 import { useMessage } from "../../../context/MessageContext";
 import { useUser } from "../../../context/UserProvider";
 import './Posts.css'
+import { getAllCategories } from "../../../services/public";
 
 const NewPost = () => {
     const [form] = Form.useForm();
     const [showModal, setShowModal] = useState(false);
     const [imageList, setImageList] = useState([]);
+    const [categoriesOptions, setCategoriesOptions] = useState([]);
     const { user, token: authToken } = useUser();
     const message = useMessage();
     
@@ -38,6 +39,13 @@ const NewPost = () => {
         })
     };
 
+    useEffect(() => {
+        getAllCategories()
+        .then((result) => {
+            setCategoriesOptions(result.data)
+        }).catch(error => console.error(error))
+    }, [])
+
     return (
         <>
             <FileImage showModal={showModal} setShowModal={setShowModal} setImageList={setImageList} form={form}  />
@@ -46,7 +54,7 @@ const NewPost = () => {
                 layout="vertical"
                 name="new-post"
                 onFinish={onSubmit}
-                onFinishFailed={() => console.log("On Finish Filed")}
+                onFinishFailed={() => { console.log(form.getFieldError()) }}
             >
                 <Row gutter={[12, 12]}>
                     <Col xs={24} sm={24} md={12}>
@@ -77,10 +85,14 @@ const NewPost = () => {
                             <Input />
                         </Form.Item>
                         <Form.Item
-                            label="Tags"
-                            name="tags"
+                            label="Category"
+                            name="category"
+                            rules={[{
+                                required: true,
+                                message: 'Please select the category of the product.'
+                            }]}
                         >
-                            <Select mode="multiple" options={tagOptions}/>
+                            <Select options={categoriesOptions}/>
                         </Form.Item>
                     </Col>
                     <Col xs={24} sm={24} md={12}>
