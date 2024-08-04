@@ -3,7 +3,7 @@ import { Header } from "antd/es/layout/layout";
 import { NavLink } from "react-router-dom";
 import { MenuOutlined, ShoppingOutlined } from "@ant-design/icons";
 import { useUser } from "../../context/UserProvider";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CartContext } from "../../context/CartProvider";
 import "./NavBar.css"
 
@@ -11,7 +11,6 @@ const NavBar = () => {
     const setActiveClass = ({ isActive }) => (isActive ? "active" : "inactive");
     const currentUser = useUser();
     const { quantity } = useContext(CartContext);
-    const [showMenu, setShowMenu] = useState(true);
 
     const items = [
         {
@@ -51,7 +50,7 @@ const NavBar = () => {
         <>
             <Header className="nav-bar">
                 <div className="nav-logo" >MarketPlace</div>
-                <div className={`menu-options ${showMenu ? 'show' : 'hidden'}`}>
+                <div className={`menu-options`}>
                     <NavLink className={setActiveClass} to="">Home</NavLink>
                     <NavLink className={setActiveClass} to="products">Products</NavLink>
                     <NavLink className={setActiveClass} to="about">About us</NavLink>
