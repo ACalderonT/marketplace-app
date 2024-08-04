@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const BASE_URL = import.meta.env.NODE_ENV === "production" ? import.meta.env.VITE_API_URL : `${import.meta.env.VITE_LOCAL_API_URL}:${import.meta.env.VITE_API_PORT}`;
+
 export const getAllProducts = async (page, filters) => {
     try{
-        const url = `http://localhost:3000/posts?page=${page}`;
+        const url = `${BASE_URL}/posts?page=${page}`;
         const response = await axios.get(url, {
             params: filters
         })
@@ -15,7 +17,7 @@ export const getAllProducts = async (page, filters) => {
 
 export const getProductById = async (productId) => {
     try{
-        const url = `http://localhost:3000/posts/${productId}`;
+        const url = `${BASE_URL}/posts/${productId}`;
         const response = await axios.get(url)
 
         return response.data
@@ -26,7 +28,7 @@ export const getProductById = async (productId) => {
 
 export const getAllCategories = async () => {
     try{
-        const url = `http://localhost:3000/categories`;
+        const url = `${BASE_URL}/categories`;
         const response = await axios.get(url)
 
         return response.data
@@ -37,7 +39,7 @@ export const getAllCategories = async () => {
 
 export const getAllBrands = async () => {
     try{
-        const url = `http://localhost:3000/brands`
+        const url = `${BASE_URL}/brands`
         const response = await axios.get(url)
 
         return response.data
@@ -48,7 +50,7 @@ export const getAllBrands = async () => {
 
 export const getPriceLimits = async () => {
     try{
-        const url = `http://localhost:3000/price`
+        const url = `${BASE_URL}/price`
         const response = await axios.get(url)
 
         return response.data

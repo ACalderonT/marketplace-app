@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const BASE_URL = import.meta.env.NODE_ENV === "production" ? import.meta.env.VITE_API_URL : `${import.meta.env.VITE_LOCAL_API_URL}:${import.meta.env.VITE_API_PORT}`;
+
 export const createUser = async (payload) => {
     try{
-        const url = `http://localhost:3000/account`
+        const url = `${BASE_URL}/account`
 
         const response = await axios.post(url, payload);
 
@@ -14,7 +16,7 @@ export const createUser = async (payload) => {
 
 export const userLogIn = async (payload) => {
     try{
-        const url = `http://localhost:3000/login`
+        const url = `${BASE_URL}/login`
 
         const response = await axios.post(url, payload)
 
@@ -26,7 +28,7 @@ export const userLogIn = async (payload) => {
 
 export const getUser = async (authToken) => {
     try{
-        const url = `http://localhost:3000/profile/account`
+        const url = `${BASE_URL}/profile/account`
 
         const response = await axios.get(url, { 
             headers: {
@@ -43,7 +45,7 @@ export const getUser = async (authToken) => {
 
 export const getUserPosts = async (creatorId, authToken) => {
     try{
-        const url = `http://localhost:3000/profile/posts`;
+        const url = `${BASE_URL}/profile/posts`;
 
         const response = await axios.get(url, {
             params: {
@@ -63,7 +65,7 @@ export const getUserPosts = async (creatorId, authToken) => {
 
 export const getFavoriteUserPosts = async (userId, authToken) => {
     try{
-        const url = `http://localhost:3000/profile/favorites`;
+        const url = `${BASE_URL}/profile/favorites`;
 
         const response = await axios.get(url, {
             params: {
@@ -83,7 +85,7 @@ export const getFavoriteUserPosts = async (userId, authToken) => {
 
 export const createNewPost = async (authToken, payload) => {
     try{
-        const url = `http://localhost:3000/profile/posts`
+        const url = `${BASE_URL}/profile/posts`
 
         const response = await axios.post(url, 
             {
@@ -103,7 +105,7 @@ export const createNewPost = async (authToken, payload) => {
 
 export const removePost = async (authToken, product_id) => {
     try{
-        const url = `http://localhost:3000/profile/posts/${product_id}`
+        const url = `${BASE_URL}/profile/posts/${product_id}`
 
         const response = await axios.delete(url, {
             headers: {
