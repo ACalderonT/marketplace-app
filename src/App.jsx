@@ -16,6 +16,7 @@ import Detail from './views/Products/Detail/Detail';
 import { useUser } from './context/UserProvider';
 import './App.css'
 import About from './views/About/About';
+import EditPost from './views/Profile/Posts/EditPost';
 
 
 
@@ -40,6 +41,7 @@ function App() {
               <Route index element={<Navigate to="account" replace />} />
               <Route path='account' element={<Account />} />
               <Route path='posts' element={<Posts />} />
+              <Route path='/profile/posts/edit/:id' element={<EditPost />} />
               <Route path='new_post' element={<NewPost />} />
               <Route path='favorites' element={<Favorites />} />
               <Route path="*" element={<NotFound />} />

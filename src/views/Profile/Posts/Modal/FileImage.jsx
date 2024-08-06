@@ -2,13 +2,19 @@ import { Button, Col, Form, Input, Modal, Row } from "antd";
 import PropTypes from 'prop-types';
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 
-const FileImage = ({ showModal, setShowModal, setImageList, form }) => {
+const FileImage = ({ showModal, setShowModal, setImageList, form, isEditMode, setIsSubmitDisabled }) => {
 
     const handleCancel = () => {
         setShowModal(false)
         const urlImages = form.getFieldValue(['images'])
         if(urlImages){
             setImageList(urlImages)
+        }
+    }
+
+    const handleChange = () => {
+        if(isEditMode){
+            setIsSubmitDisabled(false)
         }
     }
     
@@ -22,6 +28,7 @@ const FileImage = ({ showModal, setShowModal, setImageList, form }) => {
             >
                 <Form 
                     form={form}
+                    onChange={handleChange}
                     wrapperCol={24}
                 >
                     <Form.List
@@ -87,5 +94,7 @@ FileImage.propTypes = {
     showModal: PropTypes.bool,
     setShowModal: PropTypes.func, 
     setImageList: PropTypes.func,
+    isEditMode: PropTypes.bool,
+    setIsSubmitDisabled: PropTypes.func,
     form: PropTypes.object
 }

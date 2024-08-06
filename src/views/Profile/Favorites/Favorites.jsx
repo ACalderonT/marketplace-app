@@ -15,7 +15,6 @@ const Favorites = () => {
     useEffect(() => {
         getFavoriteUserPosts(user.id, token)
         .then((result) => {
-            console.log(result);
             setFavoritePosts(result.data);
             setIsLoading(false);
         })

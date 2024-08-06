@@ -83,6 +83,46 @@ export const getFavoriteUserPosts = async (userId, authToken) => {
     }
 };
 
+export const createFavoritePost = async (userId, postId, authToken) => {
+    try{
+        const url = `${BASE_URL}/posts/favorite`
+        const response = axios.post(url, {
+            params: {
+                user_id: userId,
+                post_id: postId
+            },
+            headers: {
+                Authorization: `Bearer ${authToken}`
+            }
+        })
+
+        return response.data
+    }catch(error){
+        console.error(error)
+        return error
+    }
+}
+
+export const removeFavoritePost = async (userId, postId, authToken) => {
+    try{
+        const url = `${BASE_URL}/posts/favorite`
+        const response = axios.delete(url, {
+            params: {
+                user_id: userId,
+                post_id: postId
+            },
+            headers: {
+                Authorization: `Bearer ${authToken}`
+            }
+        })
+
+        return response.data
+    }catch(error){
+        console.error(error)
+        return error
+    }
+}
+
 export const createNewPost = async (authToken, payload) => {
     try{
         const url = `${BASE_URL}/profile/posts`
@@ -102,6 +142,24 @@ export const createNewPost = async (authToken, payload) => {
         return error
     }
 };
+
+export const updatePost = async (authToken, product_id, payload) => {
+    try{
+        const url = `${BASE_URL}/profile/posts/${product_id}`;
+
+        const response = await axios.put(url, payload,
+        {
+            headers: {
+                Authorization: `Bearer ${authToken}`
+            }
+        })
+
+        return response.data
+    }catch(error){
+        console.error(error)
+        return error
+    }
+}
 
 export const removePost = async (authToken, product_id) => {
     try{

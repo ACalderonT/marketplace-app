@@ -37,6 +37,12 @@ const Account = () => {
         })
     })
 
+    const handleLogOut = () => {
+        currentUser.logOut();
+        localStorage.clear();
+        navigate("/");
+    }
+
     return(
         <>
             <Form
@@ -90,7 +96,7 @@ const Account = () => {
                                 }
                             ]}
                         >
-                            <Input disabled={!editMode} />
+                            <Input disabled />
                         </Form.Item>
 
                         <Form.Item
@@ -100,15 +106,15 @@ const Account = () => {
                                 {
                                     required: true,
                                     message: 'Please input your phone number!',
-                                  },
-                                  {
+                                },
+                                {
                                     pattern: new RegExp(/^[0-9\b]+$/),
                                     message: 'Please enter a valid phone number!',
-                                  },
-                                  {
+                                },
+                                {
                                     min: 10,
                                     message: 'Phone number must be at least 10 digits!',
-                                  },
+                                },
                             ]}
                         >
                             <Input disabled={!editMode} />
@@ -138,10 +144,10 @@ const Account = () => {
                                         },
                                         ({ getFieldValue }) => ({
                                             validator(_, value) {
-                                              if (!value || getFieldValue('password') === value) {
-                                                return Promise.resolve();
-                                              }
-                                              return Promise.reject(new Error('The new password that you entered do not match!'));
+                                                if (!value || getFieldValue('password') === value) {
+                                                    return Promise.resolve();
+                                                }
+                                                return Promise.reject(new Error('The new password that you entered do not match!'));
                                             },
                                         }),
                                     ]}
@@ -154,14 +160,25 @@ const Account = () => {
                     <Col xs={24} sm={24} md={12}>
                         <Flex vertical align="center" justify="center" gap='large'>
                             <Avatar 
-                                size={120}
+                                size={{
+                                    xs: 120,
+                                    sm: 200,
+                                    md: 220,
+                                    lg: 240,
+                                    xl: 240,
+                                    xxl: 340
+                                }}
                                 icon={<AntDesignOutlined />}
                             />
                             <Form.Item>
                                 <Space direction="horizontal" size='middle'>
                                     
                                     {
-                                        !editMode && <Button type="primary" ghost onClick={handleEditMode}>Edit</Button>
+                                        !editMode && 
+                                        <>
+                                            <Button type="primary" onClick={handleLogOut} danger ghost>Sing Out</Button>
+                                            <Button type="primary" ghost onClick={handleEditMode}>Edit</Button>
+                                        </>
                                     }
                                     {   
                                         editMode && 

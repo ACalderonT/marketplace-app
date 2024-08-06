@@ -4,6 +4,7 @@ import { userLogIn } from "../../services/profile";
 import { useUser } from "../../context/UserProvider";
 import { useMessage } from "../../context/MessageContext";
 import { jwtDecode } from "jwt-decode";
+import { handleCrypt } from "../../utils/helpers";
 import './Login.css'
 
 const Login = () => {
@@ -18,16 +19,11 @@ const Login = () => {
             if(result.success){
                 const decodedUser = jwtDecode(result.token)
                 const { id, name, lastname, email, phone, active } = decodedUser
-
+                const user = {id, name, lastname, email, phone, active}
                 currentUser.setToken(result.token)
-                currentUser.setUser({
-                    id,
-                    name,
-                    lastname,
-                    email,
-                    phone,
-                    active
-                })
+                currentUser.setUser(user)
+                localStorage.setItem("token", result.token)
+                localStorage.setItem("session", handleCrypt(JSON.stringify(user)))
 
                 message.success('Loged In Successfully!');
                 navigate("/profile/account")

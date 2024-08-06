@@ -1,4 +1,4 @@
-import { Button, Col, Flex, Form, Input, InputNumber, Row, Select } from "antd";
+import { Button, Col, Divider, Flex, Form, Input, InputNumber, Row, Select } from "antd";
 import { useEffect, useState } from "react";
 import FileImage from "./Modal/FileImage";
 import { PlusOutlined } from "@ant-design/icons";
@@ -48,15 +48,16 @@ const NewPost = () => {
 
     return (
         <>
-            <FileImage showModal={showModal} setShowModal={setShowModal} setImageList={setImageList} form={form}  />
+            <FileImage showModal={showModal} setShowModal={setShowModal} setImageList={setImageList} form={form} isEditMode={false} />
             <Form
                 form={form}
                 layout="vertical"
                 name="new-post"
                 onFinish={onSubmit}
                 onFinishFailed={() => { console.log(form.getFieldError()) }}
+                scrollToFirstError
             >
-                <Row gutter={[12, 12]}>
+                <Row gutter={[30, 12]}>
                     <Col xs={24} sm={24} md={12}>
                         <Form.Item
                             label="Product Name"
@@ -109,6 +110,10 @@ const NewPost = () => {
                         <Form.Item
                             label="Location"
                             name="location"
+                            rules={[{
+                                required: true,
+                                message: 'Please input the location.'
+                            }]}
                         >
                             <Input />
                         </Form.Item>
@@ -135,6 +140,7 @@ const NewPost = () => {
                         </Form.Item>
                     </Col>
                 </Row>
+                <Divider />
                 <Row justify='center'>
                     <Flex>
                         <Col span={12}>

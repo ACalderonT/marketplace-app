@@ -6,13 +6,16 @@ import { useEffect, useState } from "react";
 import { getUserPosts, removePost } from "../../../services/profile";
 import { useUser } from "../../../context/UserProvider";
 import { useMessage } from "../../../context/MessageContext";
+import { useNavigate } from "react-router-dom";
 import './Posts.css'
+
 
 const Posts = () => {
     const [userPosts, setUserPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const { user, token } = useUser();
     const message = useMessage();
+    const navigate = useNavigate();
 
     useEffect(() => {
         getUserPosts(user.id, token)
@@ -64,7 +67,7 @@ const Posts = () => {
                             <Col span={4}>
                                 <Flex justify="center">
                                     <Space>
-                                        <Button shape="circle" icon={<EditOutlined />} />
+                                        <Button onClick={() => navigate(`edit/${product.id}`)} shape="circle" icon={<EditOutlined />} />
                                         <Button onClick={() => handleDelete(product.id)} shape="circle" icon={<DeleteOutlined />} danger />
                                     </Space>
                                 </Flex>

@@ -7,6 +7,9 @@ import { useState } from "react";
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import './ProductCard.css'
+import { useUser } from '../../../context/UserProvider';
+// import { createFavoritePost, removeFavoritePost } from '../../../services/profile';
+// import { useMessage } from '../../../context/MessageContext';
 
 
 
@@ -16,6 +19,22 @@ const ProductCard = ({ product }) => {
     const navigate = useNavigate();
 
     const {setTotalPrice, setQuantity, setCartProducts} = useContext(CartContext);
+    const { isAuthenticated } = useUser();
+    // const message = useMessage();
+
+    const getActions = () => {
+        const actions = [
+            <Button key={`favorite_${product.id}`} type='text' icon={favorite ? <HeartFilled style={{ color: '#f5222d' }}/> : <HeartOutlined />} onClick={onFavoriteClick} />,
+            <Button key={`cart_${product.id}`} type='text' icon={<ShoppingCartOutlined />} onClick={() => handleBuyProduct(product)} />,
+            <Button key={`detail_${product.id}`} type='text' icon={<EyeOutlined />} onClick={() => goToDetail(product.id)} />,
+        ]
+
+        if (!isAuthenticated) {
+            actions.splice(0, 1);
+        }
+
+        return actions
+    }
 
     const goToDetail = (id) => {
         navigate(`${id}`)
@@ -24,6 +43,26 @@ const ProductCard = ({ product }) => {
     const onFavoriteClick = () => {
         setFavorite(!favorite);
         // Agregar servicio update del registro
+        // if(favorite){
+        //     createFavoritePost(user.id, product.id, token)
+        //     .then((result) => {
+        //         if(result.success){
+        //             message.success("Post added to favorites")
+        //         }else{
+        //             message.error("Something went wrong")
+        //         }
+        //     })
+        //     .catch(error => console.error(error))
+        // }else{
+        //     removeFavoritePost(user.id, product.id, token)
+        //     .then((result) => {
+        //         if(result.success){
+        //             message.success("Post removed from favorites")
+        //         }else{
+        //             message.error("Something went wrong")
+        //         }
+        //     }).catch(error => console.error(error))
+        // }
     }
 
     const handleBuyProduct = (product) => {
@@ -74,11 +113,7 @@ const ProductCard = ({ product }) => {
                         <img src={product.img} alt={product.title} className='card-img'/>
                     </div>
                 }
-                actions={[
-                    <Button key={`favorite_${product.id}`} type='text' icon={favorite ? <HeartFilled style={{ color: '#f5222d' }}/> : <HeartOutlined />} onClick={onFavoriteClick} />,
-                    <Button key={`cart_${product.id}`} type='text' icon={<ShoppingCartOutlined />} onClick={() => handleBuyProduct(product)} />,
-                    <Button key={`detail_${product.id}`} type='text' icon={<EyeOutlined />} onClick={() => goToDetail(product.id)} />,
-                ]}
+                actions={getActions()}
             >
                 <Flex justify='space-between'>
                         <Tag color='blue' style={{ fontSize: 'xx-small'}}>{product.category}</Tag>
@@ -88,7 +123,6 @@ const ProductCard = ({ product }) => {
                 <Flex vertical justify="space-between" >
                     <Flex vertical gap='small'>
                         <h2 className="product-name">{product.title}</h2>
-                        <span>{product.description}</span>
                         <span className='product-seller'>Selled by: {product.seller}</span>
                         <h1 className="product-price">$ {formatCurrency(product.price)}</h1>
                     </Flex>
