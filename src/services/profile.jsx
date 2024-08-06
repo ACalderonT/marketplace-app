@@ -178,18 +178,17 @@ export const removePost = async (authToken, product_id) => {
     }
 }
 
-export const updateUserInformation = async (authToken, payload) => {
+export const updateUserInformation = async (id, authToken, payload) => {
     try{
-        const url = ``
+        const url = `${BASE_URL}/profile/account/${id}`
 
-        const response = await axios.put(url, {
+        const response = await axios.put(url, payload, {
             headers: {
                 Authorization: `Bearer ${authToken}`
-            },
-            payload
+            }
         })
 
-        return response
+        return response.data
     }catch(error){
         console.error(error);
         return error
