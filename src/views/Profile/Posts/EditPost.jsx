@@ -178,7 +178,7 @@ const EditPost = () => {
                                         imageList.map((image, index) => (
                                             <Col key={(index)} xs={24} sm={12} md={8}>
                                                 <div className="img-container">
-                                                    <img src={image.url} className="post-img" />
+                                                    <img src={image?.url} className="post-img" />
                                                 </div>
                                             </Col>
                                         ))
