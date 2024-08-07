@@ -135,6 +135,7 @@ const Filters = ({ setTotal, setIsLoading, setCurrentPage, setProducts }) => {
                             min={minPrice}
                             max={maxPrice}
                             marks={marks}
+                            step={100000}
                             range
                         />
                     </Form.Item>
